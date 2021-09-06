@@ -1,11 +1,13 @@
 import "./App.css";
 import Info from "./components/Info";
+import SearchBar from "./components/SearchBar";
 import { useState } from "react";
 
 function App() {
   return (
     <>
       <Info title="Inventory" />
+      <SearchBar />
       <AddItem title="goodness" text="Tim" number={2} />
       <AddItem text="joe" />
       <AddItem />
