@@ -1,28 +1,37 @@
 import "./App.css";
 import Info from "./components/Info";
 import SearchBar from "./components/SearchBar";
+import AddItem from "./components/AddItem";
+import ItemsDisplay from "./components/ItemsDisplay";
 import { useState } from "react";
 
 function App() {
+  const [data, setData] = useState({ items: []});
+
+  const updateFilters = (searchParams) => {
+    setData(searchParams)};
+
+    const addItemToData = (item) => {
+      let items = data["items"];
+      data['items'].push(item);
+      setData({items: item});
+      console.log(data);
+    }
+
   return (
-    <>
+    <div className='App'>
       <Info title="Inventory" />
-      <SearchBar />
-      <AddItem title="goodness" text="Tim" number={2} />
-      <AddItem text="joe" />
+      <SearchBar callback={updateFilters}/>
+
+      <p>Name: {"name" in data ? data["name"] : "No data to display"} </p>
+      <p>Type: {"type" in data ? data["type"] : "No data to display"} </p>
+      <p>Max Price: {"price" in data ? data["price"] : "No data to display"} </p>
+      <p>Brand: {"brand" in data ? data["brand"] : "No data to display"}</p>
+
       <AddItem />
       <ButtonState />
-    </>
-  );
-}
 
-function AddItem(props) {
-  return (
-    <form>
-      <label for="text-form">Type-something</label>
-      <input type="text" value={props.text} id="text-form" />
-      <p>{props.number}</p>
-    </form>
+    </div>
   );
 }
 
@@ -38,15 +47,15 @@ function ButtonState() {
     setCount(count + 1) ;
   };
 
-  function Data(props) {
-    return (
-      <div>
-        <Data title={title} count={count} />
-        <p>Title: {props.title}</p>
-        <p>Count: {props.count}</p>
-      </div>
-    );
-  }
+  // function Data(props) {
+  //   return (
+  //     <div>
+  //       <Data title={title} count={count} />
+  //       <p>Title: {props.title}</p>
+  //       <p>Count: {props.count}</p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>

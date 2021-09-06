@@ -1,19 +1,32 @@
 import { useState } from 'react'
 
-function SearchBar(props){
+function AddItem(props) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [brand, setBrand] = useState("");
   const [type, setType] = useState("");
 
-  const searchButtonPressed = () => {
-    console.log('Name: ' + name, 'Price: ' + price, 'Type: ' + type, 'Brand: ' + brand);
-    props.callback({name:name, price:price, type:type, brand:brand})
-  }
+  const addItemButtonPressed = () => {
+    props.addItem(
+      {name: name,
+        price: price,
+        type: type,
+        brand: brand,
+      });
+    setName("");
+    setPrice(0);
+    setType("");
+    setBrand("");
+  };
+
+
+    // console.log('Name: ' + name, 'Price: ' + price, 'Type: ' + type, 'Brand: ' + brand);
+    // props.callback({name:name, price:price, type:type, brand:brand})
+  
 
   return (
     <>
-      <h2>Sarch for an Item</h2>
+      <h2>Add an Item</h2>
       <form>
         {/* Name */}
         <label for= 'name-field'>Name:</label>
@@ -40,10 +53,10 @@ function SearchBar(props){
         </input>
       </form>
 
-      <button type="button" onClick={searchButtonPressed} >Search Now </button>
+      <button type="button" onClick={addItemButtonPressed} >Add Item </button>
 
     </>
   )
 }
 
-export default SearchBar;
+export default AddItem;
