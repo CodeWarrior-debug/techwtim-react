@@ -1,17 +1,27 @@
 import './App.css';
+import Info from './components/Info'
 
 function App() {
   return (
+    <>
 <Info />
+<AddItem />
+</>
+
   );
 }
 
-function Info() {
+
+
+function AddItem(){
+  const value = "default";
+
+
   return (
-    <>
-    <h1>Inventory System</h1>
-    <p>Manage your stuff.</p>
-    </>
+    <form>
+      <label for="text-form">Type-something</label>
+      <input type="text" value={value} id="text-form"/>
+    </form>
   )
 }
 
