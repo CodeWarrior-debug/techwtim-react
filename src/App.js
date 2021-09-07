@@ -4,6 +4,12 @@ import SearchBar from "./components/SearchBar";
 import AddItem from "./components/AddItem";
 import ItemsDisplay from "./components/ItemsDisplay";
 import { useState } from "react";
+import styled from 'styled-components';
+
+const Title = styled.h1`
+color: blue;
+text-align: center;
+`
 
 function App() {
   const [data, setData] = useState({ items: []});
@@ -13,12 +19,15 @@ function App() {
 
     const addItemToData = (item) => {
       let items = data["items"];
+      items.id= items.length;
       items.push(item);
       setData({ items: items });
       console.log(data);
     }
 
   return (
+    <div>
+    <Title>The Boss Store</Title>
     <div className='App'>
       <Info title="Inventory" />
       <SearchBar callback={updateFilters}/>
@@ -32,6 +41,7 @@ function App() {
       <ItemsDisplay items={data["items"]}/>
       <ButtonState />
 
+    </div>
     </div>
   );
 }
@@ -47,16 +57,6 @@ function ButtonState() {
   const updateCounterClicked = () => {
     setCount(count + 1) ;
   };
-
-  // function Data(props) {
-  //   return (
-  //     <div>
-  //       <Data title={title} count={count} />
-  //       <p>Title: {props.title}</p>
-  //       <p>Count: {props.count}</p>
-  //     </div>
-  //   );
-  // }
 
   return (
     <>
