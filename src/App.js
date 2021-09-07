@@ -13,8 +13,8 @@ function App() {
 
     const addItemToData = (item) => {
       let items = data["items"];
-      data['items'].push(item);
-      setData({items: item});
+      items.push(item);
+      setData({ items: items });
       console.log(data);
     }
 
@@ -28,7 +28,8 @@ function App() {
       <p>Max Price: {"price" in data ? data["price"] : "No data to display"} </p>
       <p>Brand: {"brand" in data ? data["brand"] : "No data to display"}</p>
 
-      <AddItem />
+      <AddItem addItem={addItemToData}/>
+      <ItemsDisplay items={data["items"]}/>
       <ButtonState />
 
     </div>

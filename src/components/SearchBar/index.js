@@ -13,7 +13,7 @@ function SearchBar(props){
 
   return (
     <>
-      <h2>Sarch for an Item</h2>
+      <h2>Search for an Item</h2>
       <form>
         {/* Name */}
         <label for= 'name-field'>Name:</label>
