@@ -4,8 +4,11 @@ import SearchBar from "./components/SearchBar";
 import AddItem from "./components/AddItem";
 import ItemsDisplay from "./components/ItemsDisplay";
 import { useState } from "react";
+
+//how to do styled components, part 1
 import styled from 'styled-components';
 
+//how to do styled components, part 2
 const Title = styled.h1`
 color: ${(props) => (props.color ? props.color : "blue")};
 text-align: center;
@@ -13,10 +16,10 @@ text-align: center;
 
 function App() {
   const [data, setData] = useState({ items: []});
-
+  
   const updateFilters = (searchParams) => {
     setData(searchParams)};
-
+    
     const addItemToData = (item) => {
       let items = data["items"];
       items.id= items.length;
@@ -24,14 +27,15 @@ function App() {
       setData({ items: items });
       console.log(data);
     }
-
-  return (
-    <div className='container'>
-    {/* <div className = 'row'> */}
+    
+    return (
+      <div className='container'>
+    <div className = 'row mt-3'>
+      {/* how to do styled components, part 3 */}
     <Title color='red' >The Boss Store</Title>
-    {/* </div> */}
+    </div>
     <div className='App'>
-      <Info title="Inventory" />
+      {/* <Info title="Inventory" /> */}
       <SearchBar callback={updateFilters}/>
 
       {/* <p>Name: {"name" in data ? data["name"] : "No data to display"} </p>
@@ -39,9 +43,9 @@ function App() {
       <p>Max Price: {"price" in data ? data["price"] : "No data to display"} </p>
       <p>Brand: {"brand" in data ? data["brand"] : "No data to display"}</p> */}
 
-      <AddItem addItem={addItemToData}/>
-      <ItemsDisplay items={data["items"]}/>
-      <ButtonState />
+      <AddItem addItem={addItemToData} className='row mt-3'/>
+      <ItemsDisplay items={data["items"]} className='row mt-3'/>
+      <ButtonState className='row mt-3'/>
 
     </div>
     </div>
