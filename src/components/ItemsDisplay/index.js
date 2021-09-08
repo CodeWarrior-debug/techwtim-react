@@ -3,13 +3,14 @@ function ItemsDisplay(props) {
     <div>
       {props.items.map((item) => {
         return (
-          <div>
+          <div className="container">
+            <div classname='row'>
             <p>ID: {item.id}</p>
             <p>Name: {item.name}</p>
             <p>Price: {item.price}</p>
             <p>Type: {item.type}</p>
             <p>Brand: {item.brand}</p>
-
+            </div>
           </div>
 
         )

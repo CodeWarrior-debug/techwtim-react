@@ -7,9 +7,9 @@ import { useState } from "react";
 import styled from 'styled-components';
 
 const Title = styled.h1`
-color: blue;
+color: ${(props) => (props.color ? props.color : "blue")};
 text-align: center;
-`
+`;
 
 function App() {
   const [data, setData] = useState({ items: []});
@@ -26,16 +26,18 @@ function App() {
     }
 
   return (
-    <div>
-    <Title>The Boss Store</Title>
+    <div className='container'>
+    {/* <div className = 'row'> */}
+    <Title color='red' >The Boss Store</Title>
+    {/* </div> */}
     <div className='App'>
       <Info title="Inventory" />
       <SearchBar callback={updateFilters}/>
 
-      <p>Name: {"name" in data ? data["name"] : "No data to display"} </p>
+      {/* <p>Name: {"name" in data ? data["name"] : "No data to display"} </p>
       <p>Type: {"type" in data ? data["type"] : "No data to display"} </p>
       <p>Max Price: {"price" in data ? data["price"] : "No data to display"} </p>
-      <p>Brand: {"brand" in data ? data["brand"] : "No data to display"}</p>
+      <p>Brand: {"brand" in data ? data["brand"] : "No data to display"}</p> */}
 
       <AddItem addItem={addItemToData}/>
       <ItemsDisplay items={data["items"]}/>
