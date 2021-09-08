@@ -21,7 +21,7 @@ function SearchBar(props) {
       <h2>Search for an Item</h2>
       <div className="row mt-3">
         {/* Name */}
-        <div className="col">
+        <div className="col-3">
           <label for="name-field">Name:</label>
           <input
             id="name-field"
@@ -32,7 +32,7 @@ function SearchBar(props) {
             ></input>
         </div>
         {/* Price */}
-        <div className="col">
+        <div className="col-3">
           <label for="price-field">Max Price:</label>
           <input
             id="price-field"
@@ -43,7 +43,7 @@ function SearchBar(props) {
           ></input>
         </div>
         {/* Type */}
-        <div className="col">
+        <div className="col-3">
           <label for="type-field">Type:</label>
           <input
             id="type-field"
@@ -54,7 +54,7 @@ function SearchBar(props) {
           ></input>
         </div>
         {/* Brand */}
-        <div className="col">
+        <div className="col-3">
           <label for="brand-field">Brand:</label>
           <input
             id="brand-field"
