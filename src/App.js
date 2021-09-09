@@ -6,72 +6,97 @@ import ItemsDisplay from "./components/ItemsDisplay";
 import { useState } from "react";
 
 //how to do styled components, part 1
-import styled from 'styled-components';
+import styled from "styled-components";
 
 //how to do styled components, part 2
 const Title = styled.h1`
-color: ${(props) => (props.color ? props.color : "blue")};
-text-align: center;
+  color: ${(props) => (props.color ? props.color : "blue")};
+  text-align: center;
 `;
 
 function App() {
-  const [data, setData] = useState({ items: []});
-  
-  const updateFilters = (searchParams) => {
-    setData(searchParams)};
-    
-    const addItemToData = (item) => {
-      let items = data["items"];
-      items.id= items.length;
-      items.push(item);
-      setData({ items: items });
-      console.log(data);
-    }
-    
-    return (
-      <div className='container'>
-    <div className = 'row mt-3'>
-      {/* how to do styled components, part 3 */}
-    <Title color='red' >The Boss Store</Title>
-    </div>
-    <div className='App'>
-      {/* <Info title="Inventory" /> */}
-      <SearchBar callback={updateFilters}/>
+  const [data, setData] = useState({ items: [] });
+  const [filters, setFilters] = useState({});
 
-      {/* <p>Name: {"name" in data ? data["name"] : "No data to display"} </p>
+  const filterData = (data) => {
+    const filteredData = [];
+
+    if (!filters.name) {
+      return data;
+    }
+
+    for (const item of data) {
+      if (filters.name !== "" && item.name !== filters.name) {
+        continue;
+      }
+      if (filters.price !== 0 && item.price > filters.price) {
+        continue;
+      }
+      if (filters.type !== "" && item.type !== filters.type) {
+        continue;
+      }
+      if (filters.brand !== "" && item.brand !== filters.brand) {
+        continue;
+      }
+      filteredData.push(item);
+    }
+    return filteredData;
+  };
+
+  const updateFilters = (searchParams) => {
+    setData(searchParams);
+  };
+
+  const addItemToData = (item) => {
+    let items = data["items"];
+    items.id = items.length;
+    items.push(item);
+    setData({ items: items });
+    console.log(data);
+  };
+
+  return (
+    <div className="container">
+      <div className="row mt-3">
+        {/* how to do styled components, part 3 */}
+        <Title color="red">The Boss Store</Title>
+      </div>
+      <div className="App">
+        {/* <Info title="Inventory" /> */}
+        <SearchBar callback={updateFilters} />
+
+        {/* <p>Name: {"name" in data ? data["name"] : "No data to display"} </p>
       <p>Type: {"type" in data ? data["type"] : "No data to display"} </p>
       <p>Max Price: {"price" in data ? data["price"] : "No data to display"} </p>
       <p>Brand: {"brand" in data ? data["brand"] : "No data to display"}</p> */}
 
-      <AddItem addItem={addItemToData} className='row mt-3'/>
-      <ItemsDisplay items={data["items"]} className='row mt-3'/>
-      <ButtonState className='row mt-3'/>
-
-    </div>
+        <AddItem addItem={addItemToData} className="row mt-3" />
+        <ItemsDisplay items={filterData(data["items"])} className="row mt-3" />
+        <ButtonState className="row mt-3" />
+      </div>
     </div>
   );
+
+  function ButtonState() {
+    const [title, setTitle] = useState("");
+    const [count, setCount] = useState(0);
+
+    const updateTitleClicked = () => {
+      setTitle("New Title");
+    };
+
+    const updateCounterClicked = () => {
+      setCount(count + 1);
+    };
+
+    return (
+      <>
+        <p>Title: {title} </p>
+        <p>Counter: {count} </p>
+        <button onClick={updateTitleClicked}>Update Title </button>
+        <button onClick={updateCounterClicked}>Update Count</button>
+      </>
+    );
+  }
 }
-
-function ButtonState() {
-  const [title, setTitle] = useState("");
-  const [count, setCount] = useState(0);
-
-  const updateTitleClicked = () => {
-    setTitle("New Title") ;
-  };
-
-  const updateCounterClicked = () => {
-    setCount(count + 1) ;
-  };
-
-  return (
-    <>
-      <p>Title: {title} </p>
-      <p>Counter: {count} </p>
-      <button onClick={updateTitleClicked}>Update Title </button>
-      <button onClick={updateCounterClicked}>Update Count</button>
-    </>
-  );
-}
-
 export default App;
